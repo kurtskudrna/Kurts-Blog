@@ -1,13 +1,16 @@
 from myblog.models import Post
-from django.views.generic import ListView, DetailView, CreateView, UpdateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .models import Post
-from .forms import CreateForm
+from django.urls import reverse_lazy
+from .forms import CreateForm, EditForm
 # List brings multiple records to list out, CreateView creates a view, Detail will bring a single
 
 
 class Main(ListView):
     model = Post
     template_name = 'main.html'
+    # puts newest blog on top
+    ordering = ['-date']
 
 
 class Detail(DetailView):
@@ -23,5 +26,11 @@ class CreatePost(CreateView):
 
 class EditPost(UpdateView):
     model = Post
+    form_class = EditForm
     template_name = 'edit_post.html'
-    fields = '__all__'
+
+
+class DeletePost(DeleteView):
+    model = Post
+    template_name = 'delete_post.html'
+    success_url = reverse_lazy('main')

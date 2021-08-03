@@ -5,10 +5,12 @@
 
 <a href="{% url 'main' %}">Main Page</a>
 <a href="{% url 'edit_post' post.pk %}">Edit Post</a>
+<a href="{% url 'delete_post' post.pk %}">Delete Post</a>
 
 
-<h1>{{ post.title }}</h1>
-<h4> - {{ post.author }}</h4>
+<h3>{{ post.title }}
+    - {{ post.author }}</h3>
+<h6> {{ post.date }}</h6>
 <h6>{{ post.body }}</h6>
 
 
