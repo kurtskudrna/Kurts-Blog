@@ -4,6 +4,8 @@
 
 
 <a href="{% url 'main' %}">Main Page</a>
+<a href="{% url 'edit_post' post.pk %}">Edit Post</a>
+
 
 <h1>{{ post.title }}</h1>
 <h4> - {{ post.author }}</h4>

@@ -1,7 +1,7 @@
 from myblog.models import Post
-from django.shortcuts import render
-from django.views.generic import ListView, DetailView, CreateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from .models import Post
+from .forms import CreateForm
 # List brings multiple records to list out, CreateView creates a view, Detail will bring a single
 
 
@@ -17,5 +17,11 @@ class Detail(DetailView):
 
 class CreatePost(CreateView):
     model = Post
+    form_class = CreateForm
     template_name = 'create_post.html'
+
+
+class EditPost(UpdateView):
+    model = Post
+    template_name = 'edit_post.html'
     fields = '__all__'
