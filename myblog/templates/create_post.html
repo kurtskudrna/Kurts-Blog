@@ -2,6 +2,12 @@
 {% block title %}Create a Post{% endblock %}
 {% block content %}
 
-<h1>hi</h1>
+<h1>Create Post</h1>
+<br>
+<form method='POST'>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button>Post</button>
+</form>
 
 {% endblock %}
