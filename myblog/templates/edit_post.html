@@ -2,6 +2,7 @@
 {% block title %}Update Post{% endblock %}
 {% block content %}
 
+{% if user.is_authenticated %}
 <h1>Edit Post</h1>
 <br>
 <div class='form-group'>
@@ -11,4 +12,8 @@
         <button>Update</button>
     </form>
 </div>
+
+{% else %}
+<a href="{% url 'login' %}">Login Here to edit post</a>
+{% endif %}
 {% endblock %}

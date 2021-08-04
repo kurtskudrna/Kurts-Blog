@@ -4,14 +4,16 @@
 
 
 <a href="{% url 'main' %}">Main Page</a>
+{% if user.is_authenticated %}
 <a href="{% url 'edit_post' post.pk %}">Edit Post</a>
 <a href="{% url 'delete_post' post.pk %}">Delete Post</a>
+{% endif %}
 
 
 <h3>{{ post.title }}
     - {{ post.author }}</h3>
 <h6> {{ post.date }}</h6>
-<h6>{{ post.body }}</h6>
+<h6>{{ post.body|safe }}</h6>
 
 
 {% endblock %}
