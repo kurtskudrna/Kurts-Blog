@@ -10,8 +10,9 @@
     {% for post in object_list %}
 <h2><a href="{% url 'detail' post.pk %}">{{ post.title }}</a></h2>
 <h5>{{ post.body }}</h5>
-<hr size="5" width="90%">
-<h6>{{ post.date }} | by {{ post.author }} | Category: <a href="{% url 'category' post.category|slugify %}">
+<hr size="5" width="100%">
+<h6>{{ post.date }} | by {{ post.author }} | Category: <a class="btn btn-sm btn-outline-info"
+        href="{% url 'category' post.category|slugify %}" role="button">
         {{ post.category }}</a>
 </h6>
 <br>
