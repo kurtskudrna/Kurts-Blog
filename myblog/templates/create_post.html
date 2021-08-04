@@ -11,8 +11,13 @@
         {{ form.as_p }}
         <button>Post</button>
     </form>
+    <br>
 </div>
 
+<script>
+    let name = '{{ user.id }}';
+    document.getElementById('author').value = name;
+</script>
 {% else %}
 <a href="{% url 'login' %}">Login Here to create post</a>
 {% endif %}

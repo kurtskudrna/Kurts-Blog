@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% block title %}{{post.title}}{% endblock %}
+{% block title %}{{post.title}} - Kurt's Blog {% endblock %}
 {% block content %}
 
 
@@ -17,5 +17,18 @@
 <h6> {{ post.date }}</h6>
 <h6>{{ post.body|safe }}</h6>
 
+<h3>Comments</h3>
+
+{% if not post.comment_post.all %}
+No Comments <br><a href='#'>Post a New Comment</a>
+{% else %}
+
+{% for blogcomment in post.comment_post.all %}
+<h5>{{ blogcomment.comment }}</h5>
+<h6>- {{ blogcomment.user }} - {{ blogcomment.date }}</h6>
+<br>
+{% endfor %}
+
+{% endif %}
 
 {% endblock %}

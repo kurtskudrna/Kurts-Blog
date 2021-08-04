@@ -9,7 +9,7 @@ from django.contrib.auth.models import User
 class Post(models.Model):
     title = models.CharField(max_length=255)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-    date = models.DateField(auto_now_add=True)
+    date = models.DateTimeField(auto_now_add=True)
     category = models.CharField(max_length=100, default='sports')
     body = models.TextField()
 
@@ -18,7 +18,7 @@ class Post(models.Model):
     # to send form for create post
 
     def get_absolute_url(self):
-        return reverse('detail', args=(str(self.id)))
+        return reverse('main')
 
 
 class Category(models.Model):
@@ -30,3 +30,14 @@ class Category(models.Model):
 
     def get_absolute_url(self):
         return reverse('main')
+
+
+class BlogComments(models.Model):
+    post = models.ForeignKey(
+        Post, related_name='comment_post', on_delete=models.CASCADE)
+    user = models.CharField(max_length=255)
+    comment = models.TextField()
+    date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return '%s - %s' % (self.post.title, self.user)
