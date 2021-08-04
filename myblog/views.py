@@ -32,8 +32,8 @@ class CreateCat(CreateView):
 
 
 def Category(request, category):
-    cat_posts = Post.objects.filter(category=category)
-    return render(request, 'category.html', {'category': category, 'cat_posts': cat_posts})
+    cat_posts = Post.objects.filter(category=category.replace('-', ' '))
+    return render(request, 'category.html', {'category': category.replace('-', ' '), 'cat_posts': cat_posts})
 
 
 class EditPost(UpdateView):

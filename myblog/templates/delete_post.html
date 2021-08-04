@@ -3,6 +3,7 @@
 {% block content %}
 
 {% if user.is_authenticated %}
+{% if user.id == post.author.id %}
 <h1>Delete Post</h1>
 <br>
 <h4>Would you like to delete: {{ post.title }} - {{ post.author }}</h4>
@@ -13,6 +14,7 @@
         <button class='btn btn-danger'>Delete</button>
     </form>
 </div>
+{% endif %}
 {% else %}
 <a href="{% url 'login' %}">Login Here to delete post</a>
 {% endif %}

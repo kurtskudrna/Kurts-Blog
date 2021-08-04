@@ -3,6 +3,7 @@
 {% block content %}
 
 {% if user.is_authenticated %}
+{% if user.id == post.author.id %}
 <h1>Edit Post</h1>
 <br>
 <div class='form-group'>
@@ -12,6 +13,7 @@
         <button>Update</button>
     </form>
 </div>
+{% endif %}
 
 {% else %}
 <a href="{% url 'login' %}">Login Here to edit post</a>
