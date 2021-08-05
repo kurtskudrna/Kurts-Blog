@@ -29,12 +29,12 @@
 <br>
 <br>
 <hr size="3" width="100%">
-<h5><u>Comments</u></h5>
 
 {% if not post.comment_post.all %}
-No Comments!!! - <a href='#'>Post a New Comment</a>
+<h5>No Comments!!! - <a href="{% url 'create_comment' post.pk%}">Post a New Comment</a></h5>
 {% else %}
-
+<h5><u>Comments</u> - <a href="{% url 'create_comment' post.pk%}">Post a New Comment</a></h5>
+<br>
 {% for blogcomment in post.comment_post.all %}
 <h5>
     <li>{{ blogcomment.comment }}</li>

@@ -42,6 +42,15 @@
 
                 {% endif %}
             </ul>
+            {% if user.is_authenticated %}
+            <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link disabled" aria-current="page" href="#">{{user.username}}</a>
+                </li>
+            </ul>
+            {% endif %}
+
+
         </div>
     </nav>
     <div class='container mt-5'>

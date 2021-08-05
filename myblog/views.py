@@ -1,9 +1,9 @@
 from myblog.models import Post
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from .models import Category, Post
+from .models import BlogComments, Category, Post
 from django.urls import reverse_lazy
-from .forms import CreateForm, EditForm
+from .forms import CommentForm, CreateForm, EditForm
 # List brings multiple records to list out, CreateView creates a view, Detail will bring a single
 
 
@@ -46,3 +46,14 @@ class DeletePost(DeleteView):
     model = Post
     template_name = 'delete_post.html'
     success_url = reverse_lazy('main')
+
+
+class CreateComment(CreateView):
+    model = BlogComments
+    form_class = CommentForm
+    template_name = 'new_comment.html'
+    success_url = reverse_lazy('main')
+
+    def form_valid(self, form):
+        form.instance.post_id = self.kwargs['pk']
+        return super().form_valid(form)

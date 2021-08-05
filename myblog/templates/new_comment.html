@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}Create a Post{% endblock %}
+{% block content %}
+{% if user.is_authenticated %}
+<h1>Add Comment</h1>
+<br>
+<div class='form-group'>
+    <form method='POST'>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class='btn btn-success'>Post</button>
+    </form>
+    <br>
+</div>
+<script>
+    let name = '{{ user.username }}';
+    document.getElementById('id_user').value = name;
+</script>
+{% else %}
+Sorry you are not logged in!!
+<a href="{% url 'login' %}">Login Here to add comment</a>
+{% endif %}
+
+{% endblock %}

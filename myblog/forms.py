@@ -1,5 +1,5 @@
 from django import forms
-from .models import Category, Post
+from .models import BlogComments, Category, Post
 
 # create form fields for model
 catnames = Category.objects.all().values_list('catname', 'catname')
@@ -32,4 +32,15 @@ class EditForm(forms.ModelForm):
             'title': forms.TextInput(attrs={'class': 'form-control'}),
             'body': forms.Textarea(attrs={'class': 'form-control'}),
             'category': forms.Select(choices=catlist, attrs={'class': 'form-control'}),
+        }
+
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = BlogComments
+        fields = ('user', 'comment')
+
+        widgets = {
+            'user': forms.TextInput(attrs={'class': 'form-control', 'type': 'hidden'}),
+            'comment': forms.Textarea(attrs={'class': 'form-control'}),
         }
